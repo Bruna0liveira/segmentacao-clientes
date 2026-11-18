@@ -2,7 +2,7 @@
 
 Uso (no Colab, depois de exportar df_prep do notebook):
     df_prep.to_csv('dados_preparados.csv', index=False)
-    !python treinar_modelo.py --k 4
+    !python treinar_modelo.py --k 3
 """
 import argparse
 import joblib
@@ -16,7 +16,7 @@ from sklearn.preprocessing import OneHotEncoder, StandardScaler
 from funcoes import COL_CAT, COL_NUM, preparar
 
 ap = argparse.ArgumentParser()
-ap.add_argument("--k", type=int, default=4, help="número de clusters")
+ap.add_argument("--k", type=int, default=3, help="número de clusters")
 ap.add_argument("--csv", default="dados_preparados.csv")
 args = ap.parse_args()
 
