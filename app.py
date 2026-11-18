@@ -5,7 +5,7 @@ import joblib
 import pandas as pd
 import streamlit as st
 
-from funcoes import COL_NUM, COLUNAS, preparar
+from funcoes import COLUNAS, preparar
 
 st.set_page_config(page_title="Segmentação de Clientes", page_icon="🛒")
 
@@ -20,17 +20,18 @@ def carregar():
     return joblib.load(arquivos[0])
 
 
-# Nomes e ações dos segmentos (valem para o modelo K=4 treinado pelo grupo).
+# Nomes e ações dos segmentos (valem para o modelo K=3 treinado pelo grupo, Estratégia 3/4).
 # Se retreinar o modelo, a numeração pode mudar: confira o perfil_segmentos.csv e ajuste aqui.
 SEGMENTOS = {
-    0: ("Alto ticket",
-        "Fidelização e benefícios para quem compra mais; ofertas de maior valor aos sábados."),
-    1: ("Baixo ticket",
-        "Combos e vendas casadas para aumentar o carrinho; investigar a menor satisfação."),
-    2: ("Ticket médio, moda",
-        "Manter a experiência, que é a mais bem avaliada; ofertas de moda aos sábados."),
-    3: ("Ticket médio, alimentos",
-        "Converter clientes normais em membros; promoções de alimentos no meio da semana."),
+    0: ("Cliente Premium",
+        "Programa de recompensas exclusivo para membros (pontos dobrados aos sábados, "
+        "acesso antecipado a lançamentos) e campanhas digitais de produtos de alto valor."),
+    1: ("Cliente Econômico",
+        "Campanha de adesão ao programa de fidelidade com benefício na primeira compra como membro; "
+        "kits e 'compre 2 leve 3' para aumentar o ticket; promoções às terças-feiras."),
+    2: ("Cliente Regular",
+        "Cashback para migrar do dinheiro para carteira digital ou cartão; lista de compras "
+        "recorrente em Alimentos e Bebidas; oferta de membro para migrar ao segmento Premium."),
 }
 
 
