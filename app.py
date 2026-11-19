@@ -60,6 +60,7 @@ aba1, aba2 = st.tabs(["Uma compra", "Arquivo em lote (CSV)"])
 
 with aba1:
     c1, c2 = st.columns(2)
+    cliente = c1.text_input("Cliente (nome ou ID, opcional)")
     filial = c1.selectbox("Filial", ["A", "B", "C"])
     tipo = c1.selectbox("Tipo de cliente", ["Membro", "Normal"])
     genero = c1.selectbox("Gênero", ["Feminino", "Masculino"])
@@ -119,7 +120,8 @@ with aba1:
                 "Total": subtotal * IMPOSTO}])
             seg = int(pipe.predict(preparar(compra, p33, p66))[0])
 
-            st.success(f"Compra completa (R$ {subtotal * IMPOSTO:,.2f} com imposto, "
+            quem = f"Cliente **{cliente.strip()}** · " if cliente.strip() else ""
+            st.success(f"{quem}Compra completa (R$ {subtotal * IMPOSTO:,.2f} com imposto, "
                        f"{qtd_total} unidades): **Segmento {seg}: {nome_segmento(seg)}**.")
             if acao_segmento(seg):
                 st.info(f"Ação de marketing sugerida: {acao_segmento(seg)}")
